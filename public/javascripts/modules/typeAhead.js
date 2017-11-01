@@ -47,7 +47,7 @@
         searchInput.on('keyup', (e) => {
           // if keys up, down, or enter. skip!
           if(![38, 40, 13].includes(e.keyCode)) {
-            return; // skit it!
+            return; // skip it!
           }
           const activeClass = 'search__result--active';
           const current = search.querySelector(`.${activeClass}`);
