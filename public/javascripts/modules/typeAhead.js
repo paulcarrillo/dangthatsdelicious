@@ -18,13 +18,13 @@
     const searchResults = search.querySelector('.search__results');
 
     searchInput.on('input', function() {
-      // if there is no value, quit it!
+      // if there is no value, quit it
       if(!this.value) {
         searchResults.style.display = 'none';
         return; //stop
       }
 
-        // show the search results!
+        // show the search results
         searchResults.style.display = 'block';
 
         axios
@@ -45,9 +45,9 @@
 
         // handle keyboard inputs
         searchInput.on('keyup', (e) => {
-          // if keys up, down, or enter. skip!
+          // if keys up, down, or enter. skip
           if(![38, 40, 13].includes(e.keyCode)) {
-            return; // skip it!
+            return; // skip it
           }
           const activeClass = 'search__result--active';
           const current = search.querySelector(`.${activeClass}`);

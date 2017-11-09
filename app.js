@@ -18,8 +18,8 @@ require('./handlers/passport');
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views')); // this is the folder where we keep our pug files
-app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
+app.set('views', path.join(__dirname, 'views')); // pug files
+app.set('view engine', 'pug');
 
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,7 +48,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// // The flash middleware let's us use req.flash('error', 'Shit!'), which will then pass that message to the next page the user requests
+// // The flash middleware which will then pass error messages to the next page the user requests
 app.use(flash());
 
 // pass variables to our templates + all requests
@@ -66,16 +66,16 @@ app.use((req, res, next) => {
   next();
 });
 
-// After allllll that above middleware, we finally handle our own routes!
+// routes
 app.use('/', routes);
 
-// If that above routes didnt work, we 404 them and forward to error handler
+// 404 them and forward to error handler
 app.use(errorHandlers.notFound);
 
-// One of our error handlers will see if these errors are just validation errors
+// error handlers will see if these errors are just validation errors
 app.use(errorHandlers.flashValidationErrors);
 
-// Otherwise this was a really bad error we didn't expect! Shoot eh
+//
 if (app.get('env') === 'development') {
   /* Development Error Handler - Prints stack trace */
   app.use(errorHandlers.developmentErrors);
@@ -84,5 +84,5 @@ if (app.get('env') === 'development') {
 // production error handler
 app.use(errorHandlers.productionErrors);
 
-// done! we export it so we can start the site in start.js
+// done! export it to start the site in start.js
 module.exports = app;
